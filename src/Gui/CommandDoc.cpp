@@ -1747,7 +1747,7 @@ void CreateDocCommands(void)
     //rcCmdMgr.addCommand(new StdCmdMergeProjects());
     rcCmdMgr.addCommand(new StdCmdExportGraphviz());
 
-    rcCmdMgr.addCommand(new StdCmdSave());
+    //rcCmdMgr.addCommand(new StdCmdSave());
     rcCmdMgr.addCommand(new StdCmdSaveAs());
     rcCmdMgr.addCommand(new StdCmdSaveCopy());
     rcCmdMgr.addCommand(new StdCmdSaveAll());
