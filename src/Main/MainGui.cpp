@@ -181,7 +181,7 @@ int main( int argc, char ** argv )
     //App::Application::Config()["HiddenDockWindow"] = "Property editor";
     App::Application::Config()["SplashAlignment" ] = "Bottom|Left";
     App::Application::Config()["SplashTextColor" ] = "#ffffff"; // white
-    App::Application::Config()["SplashInfoColor" ] = "#c8c8c8"; // light grey
+    App::Application::Config()["SplashInfoColor" ] = "#ffffff"; // light grey #c8c8c8
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
     QGuiApplication::setDesktopFileName(QStringLiteral("org.freecadweb.FreeCAD.desktop"));
