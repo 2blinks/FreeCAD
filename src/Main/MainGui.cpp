@@ -167,7 +167,8 @@ int main( int argc, char ** argv )
 #endif // PY_MAJOR_VERSION
 
     // Name and Version of the Application
-    App::Application::Config()["ExeName"] = "FreeCAD";
+    //App::Application::Config()["ExeName"] = "FreeCAD"; ORIGINAL CODE
+    App::Application::Config()["ExeName"] = "CERBERUS-CAD";
     App::Application::Config()["ExeVendor"] = "FreeCAD";
     App::Application::Config()["AppDataSkipVendor"] = "true";
     App::Application::Config()["MaintainerUrl"] = "http://www.freecadweb.org/wiki/Main_Page";
@@ -175,7 +176,7 @@ int main( int argc, char ** argv )
     // set the banner (for logging and console)
     App::Application::Config()["CopyrightInfo"] = sBanner;
     App::Application::Config()["AppIcon"] = "freecad";
-    App::Application::Config()["SplashScreen"] = "freecadsplash";
+    App::Application::Config()["SplashScreen"] = "freecadsplash"; //Note: Image changed in Gui/Icons
     App::Application::Config()["StartWorkbench"] = "StartWorkbench";
     //App::Application::Config()["HiddenDockWindow"] = "Property editor";
     App::Application::Config()["SplashAlignment" ] = "Bottom|Left";
