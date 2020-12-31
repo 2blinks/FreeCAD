@@ -1312,7 +1312,7 @@ StdCmdViewRotateLeft::StdCmdViewRotateLeft()
     : Command("Std_ViewRotateLeft")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("Rotate Left");
+    sMenuText = QT_TR_NOOP("Rotate Left by 90");
     sToolTipText = QT_TR_NOOP("Rotate the view by 90\xc2\xb0 counter-clockwise");
     sWhatsThis = "Std_ViewRotateLeft";
     sStatusTip = QT_TR_NOOP("Rotate the view by 90\xc2\xb0 counter-clockwise");
@@ -1326,8 +1326,200 @@ void StdCmdViewRotateLeft::activated(int iMsg)
     Q_UNUSED(iMsg);
     doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRotateLeft()");
 }
+// redraw
+DEF_3DV_CMD(StdCmdViewRedraw)
 
+StdCmdViewRedraw::StdCmdViewRedraw()
+    : Command("Std_ViewRedraw")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("Redraw");
+    sToolTipText = QT_TR_NOOP("Redraw");
+    sWhatsThis = "Std_ViewRedraw";
+    sStatusTip = QT_TR_NOOP("Redraw");
+    sPixmap = "view-redraw";
+    sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewRedraw::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRedraw()");
+}
+//simulation code
+//Define Materials
+DEF_3DV_CMD(StdCmdViewDefineMaterials)
 
+StdCmdViewDefineMaterials::StdCmdViewDefineMaterials()
+    : Command("Std_ViewDefineMaterials")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("DefineMaterials");
+    sToolTipText = QT_TR_NOOP("DefineMaterials");
+    sWhatsThis = "Std_ViewDefineMaterials";
+    sStatusTip = QT_TR_NOOP("DefineMaterials");
+    sPixmap = "view-DefineMaterials";
+    sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewDefineMaterials::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewDefineMaterials()");
+}
+//Define Section
+DEF_3DV_CMD(StdCmdViewDefineSection)
+StdCmdViewDefineSection::StdCmdViewDefineSection()
+    : Command("Std_ViewDefineSection")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("DefineSection");
+    sToolTipText = QT_TR_NOOP("DefineSection");
+    sWhatsThis = "Std_ViewDefineSection";
+    sStatusTip = QT_TR_NOOP("DefineSection");
+    sPixmap = "view-DefineSection";
+    sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewDefineSection::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewDefineSection()");
+}
+//Define boundary conditions
+DEF_3DV_CMD(StdCmdViewDefineBoundaryConditions)
+StdCmdViewDefineBoundaryConditions::StdCmdViewDefineBoundaryConditions()
+    : Command("Std_ViewDefineBoundaryConditions")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("DefineBoundaryConditions");
+    sToolTipText = QT_TR_NOOP("DefineBoundaryConditions");
+    sWhatsThis = "Std_ViewDefineBoundaryConditions";
+    sStatusTip = QT_TR_NOOP("DefineBoundaryConditions");
+    sPixmap = "view-DefineBoundaryConditions";
+    sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewDefineBoundaryConditions::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewDefineBoundaryConditions()");
+}
+//Define Loads
+DEF_3DV_CMD(StdCmdViewDefineLoads)
+StdCmdViewDefineLoads::StdCmdViewDefineLoads()
+    : Command("Std_ViewDefineLoads")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("DefineLoads");
+    sToolTipText = QT_TR_NOOP("DefineLoads");
+    sWhatsThis = "Std_ViewDefineLoads";
+    sStatusTip = QT_TR_NOOP("DefineLoads");
+    sPixmap = "view-DefineLoads";
+    sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewDefineLoads::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewDefineLoads()");
+}
+//Run Analysis
+DEF_3DV_CMD(StdCmdViewRunAnalysis)
+StdCmdViewRunAnalysis::StdCmdViewRunAnalysis()
+    : Command("Std_ViewRunAnalysis")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("RunAnalysis");
+    sToolTipText = QT_TR_NOOP("RunAnalysis");
+    sWhatsThis = "Std_ViewRunAnalysis";
+    sStatusTip = QT_TR_NOOP("RunAnalysis");
+    sPixmap = "view-RunAnalysis";
+    sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewRunAnalysis::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRunAnalysis()");
+}
+//Section Properties
+DEF_3DV_CMD(StdCmdViewSectionProperties)
+StdCmdViewSectionProperties::StdCmdViewSectionProperties()
+    : Command("Std_ViewSectionProperties")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("SectionProperties");
+    sToolTipText = QT_TR_NOOP("SectionProperties");
+    sWhatsThis = "Std_ViewSectionPropertiess";
+    sStatusTip = QT_TR_NOOP("SectionProperties");
+    sPixmap = "view-SectionProperties";
+    sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewSectionProperties::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewSectionProperties()");
+}
+//Plot Results
+//Section Properties
+DEF_3DV_CMD(StdCmdViewPlotResults)
+StdCmdViewPlotResults::StdCmdViewPlotResults()
+    : Command("Std_ViewPlotResults")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("PlotResults");
+    sToolTipText = QT_TR_NOOP("PlotResults");
+    sWhatsThis = "Std_ViewPlotResults";
+    sStatusTip = QT_TR_NOOP("PlotResults");
+    sPixmap = "view-PlotResults";
+    sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewPlotResults::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewPlotResults()");
+}
+//List REsults
+DEF_3DV_CMD(StdCmdViewListResults)
+StdCmdViewListResults::StdCmdViewListResults()
+    : Command("Std_ViewListResults")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("ListResults");
+    sToolTipText = QT_TR_NOOP("ListResults");
+    sWhatsThis = "Std_ViewListResults";
+    sStatusTip = QT_TR_NOOP("ListResults");
+    sPixmap = "view-ListResults";
+    sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewListResults::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewListResults()");
+}
+//Result Tools
+DEF_3DV_CMD(StdCmdViewResultTools)
+StdCmdViewResultTools::StdCmdViewResultTools()
+    : Command("Std_ViewResultTools")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("ResultTools");
+    sToolTipText = QT_TR_NOOP("ResultTools");
+    sWhatsThis = "Std_ViewResultTools";
+    sStatusTip = QT_TR_NOOP("ResultTools");
+    sPixmap = "view-ResultTools";
+    sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewResultTools::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewResultTools()");
+}
 //===========================================================================
 // Std_ViewRotateRight
 //===========================================================================
@@ -1337,7 +1529,7 @@ StdCmdViewRotateRight::StdCmdViewRotateRight()
     : Command("Std_ViewRotateRight")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("Rotate Right");
+    sMenuText = QT_TR_NOOP("Rotate Right by 90");
     sToolTipText = QT_TR_NOOP("Rotate the view by 90\xc2\xb0 clockwise");
     sWhatsThis = "Std_ViewRotateRight";
     sStatusTip = QT_TR_NOOP("Rotate the view by 90\xc2\xb0 clockwise");
@@ -2681,42 +2873,42 @@ void StdBoxSelection::activated(int iMsg)
 //===========================================================================
 DEF_3DV_CMD(StdBoxElementSelection)
 
-//StdBoxElementSelection::StdBoxElementSelection()
-//  : Command("Std_BoxElementSelection")
-//{
-//    sGroup        = QT_TR_NOOP("Standard-View");
-//    sMenuText     = QT_TR_NOOP("Box element selection");
-//    sToolTipText  = QT_TR_NOOP("Box element selection");
-//    sWhatsThis    = "Std_BoxElementSelection";
-//    sStatusTip    = QT_TR_NOOP("Box element selection");
-//#if QT_VERSION >= 0x040200
-//    sPixmap       = "edit-element-select-box";
-//#endif
-//    sAccel        = "Shift+E";
-//    eType         = AlterSelection;
-//}
-//
-//void StdBoxElementSelection::activated(int iMsg)
-//{
-//    Q_UNUSED(iMsg); 
-//    View3DInventor* view = qobject_cast<View3DInventor*>(getMainWindow()->activeWindow());
-//    if (view) {
-//        View3DInventorViewer* viewer = view->getViewer();
-//        if (!viewer->isSelecting()) {
-//            // #0002931: Box select misbehaves with touchpad navigation style
-//            // Notify the navigation style to cleanup internal states
-//            int mode = viewer->navigationStyle()->getViewingMode();
-//            if (mode != Gui::NavigationStyle::IDLE) {
-//                SoKeyboardEvent ev;
-//                viewer->navigationStyle()->processEvent(&ev);
-//            }
-//            viewer->startSelection(View3DInventorViewer::Rubberband);
-//            viewer->addEventCallback(SoMouseButtonEvent::getClassTypeId(), selectionCallback, this);
-//            SoNode* root = viewer->getSceneGraph();
-//            static_cast<Gui::SoFCUnifiedSelection*>(root)->selectionRole.setValue(false);
-//        }
-//    }
-//}
+StdBoxElementSelection::StdBoxElementSelection()
+    : Command("Std_BoxElementSelection")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("Box element selection");
+    sToolTipText = QT_TR_NOOP("Box element selection");
+    sWhatsThis = "Std_BoxElementSelection";
+    sStatusTip = QT_TR_NOOP("Box element selection");
+#if QT_VERSION >= 0x040200
+    sPixmap = "edit-element-select-box";
+#endif
+    sAccel = "Shift+E";
+    eType = AlterSelection;
+}
+
+void StdBoxElementSelection::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    View3DInventor* view = qobject_cast<View3DInventor*>(getMainWindow()->activeWindow());
+    if (view) {
+        View3DInventorViewer* viewer = view->getViewer();
+        if (!viewer->isSelecting()) {
+            // #0002931: Box select misbehaves with touchpad navigation style
+            // Notify the navigation style to cleanup internal states
+            int mode = viewer->navigationStyle()->getViewingMode();
+            if (mode != Gui::NavigationStyle::IDLE) {
+                SoKeyboardEvent ev;
+                viewer->navigationStyle()->processEvent(&ev);
+            }
+            viewer->startSelection(View3DInventorViewer::Rubberband);
+            viewer->addEventCallback(SoMouseButtonEvent::getClassTypeId(), selectionCallback, this);
+            SoNode* root = viewer->getSceneGraph();
+            static_cast<Gui::SoFCUnifiedSelection*>(root)->selectionRole.setValue(false);
+        }
+    }
+}
 
 
 //===========================================================================
@@ -3462,7 +3654,16 @@ namespace Gui {
         rcCmdMgr.addCommand(new StdCmdViewFitSelection());
         rcCmdMgr.addCommand(new StdCmdViewRotateLeft());
         rcCmdMgr.addCommand(new StdCmdViewRotateRight());
-
+        rcCmdMgr.addCommand(new StdCmdViewRedraw());
+        rcCmdMgr.addCommand(new StdCmdViewDefineMaterials);
+        rcCmdMgr.addCommand(new StdCmdViewDefineSection);
+        rcCmdMgr.addCommand(new StdCmdViewDefineBoundaryConditions);
+        rcCmdMgr.addCommand(new StdCmdViewDefineLoads);
+        rcCmdMgr.addCommand(new StdCmdViewRunAnalysis);
+        rcCmdMgr.addCommand(new StdCmdViewSectionProperties);
+        rcCmdMgr.addCommand(new StdCmdViewPlotResults);
+        rcCmdMgr.addCommand(new StdCmdViewListResults);
+        rcCmdMgr.addCommand(new StdCmdViewResultTools);
         rcCmdMgr.addCommand(new StdCmdViewExample1());
         rcCmdMgr.addCommand(new StdCmdViewExample2());
         rcCmdMgr.addCommand(new StdCmdViewExample3());
@@ -3477,7 +3678,7 @@ namespace Gui {
 
         rcCmdMgr.addCommand(new StdCmdViewCreate());
         rcCmdMgr.addCommand(new StdViewScreenShot());
-        rcCmdMgr.addCommand(new StdMainFullscreen());
+        //rcCmdMgr.addCommand(new StdMainFullscreen());
         rcCmdMgr.addCommand(new StdViewDockUndockFullscreen());
         rcCmdMgr.addCommand(new StdCmdSetAppearance());
         rcCmdMgr.addCommand(new StdCmdToggleVisibility());
@@ -3488,11 +3689,11 @@ namespace Gui {
         rcCmdMgr.addCommand(new StdCmdToggleObjects());
         rcCmdMgr.addCommand(new StdCmdShowObjects());
         rcCmdMgr.addCommand(new StdCmdHideObjects());
-        rcCmdMgr.addCommand(new StdOrthographicCamera());
-        rcCmdMgr.addCommand(new StdPerspectiveCamera());
+        // rcCmdMgr.addCommand(new StdOrthographicCamera());
+        // rcCmdMgr.addCommand(new StdPerspectiveCamera());
         rcCmdMgr.addCommand(new StdCmdToggleClipPlane());
-        rcCmdMgr.addCommand(new StdCmdDrawStyle());
-        rcCmdMgr.addCommand(new StdCmdFreezeViews());
+        //rcCmdMgr.addCommand(new StdCmdDrawStyle());
+       // rcCmdMgr.addCommand(new StdCmdFreezeViews());
         rcCmdMgr.addCommand(new StdViewZoomIn());
         rcCmdMgr.addCommand(new StdViewZoomOut());
         rcCmdMgr.addCommand(new StdViewBoxZoom());

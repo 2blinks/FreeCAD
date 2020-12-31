@@ -163,91 +163,125 @@ void StdCmdOpen::activated(int iMsg)
         }
     }
 }
+DEF_STD_CMD_C(StdCmdRecentFiles)
 
+StdCmdRecentFiles::StdCmdRecentFiles()
+    :Command("Std_RecentFiles")
+{
+    sGroup = QT_TR_NOOP("File");
+    sMenuText = QT_TR_NOOP("Open Recent");
+    sToolTipText = QT_TR_NOOP("Recent file list");
+    sWhatsThis = "Std_RecentFiles";
+    sStatusTip = QT_TR_NOOP("Recent file list");
+    eType = NoTransaction;
+}
+
+/**
+ * Opens the recent file at position \a iMsg in the menu.
+ * If the file does not exist or cannot be loaded this item is removed
+ * from the list.
+ */
+void StdCmdRecentFiles::activated(int iMsg)
+{
+    RecentFilesAction* act = qobject_cast<RecentFilesAction*>(_pcAction);
+    if (act) act->activateFile(iMsg);
+}
+
+/**
+ * Creates the QAction object containing the recent files.
+ */
+Action* StdCmdRecentFiles::createAction(void)
+{
+    RecentFilesAction* pcAction = new RecentFilesAction(this, getMainWindow());
+    pcAction->setObjectName(QLatin1String("recentFiles"));
+    pcAction->setDropDownMenu(true);
+    applyCommandData(this->className(), pcAction);
+    return pcAction;
+}
 //===========================================================================
 // Std_Import
 //===========================================================================
 
-DEF_STD_CMD_A(StdCmdImport)
+//DEF_STD_CMD_A(StdCmdImport)
 
-StdCmdImport::StdCmdImport()
-    : Command("Std_Import")
-{
+//StdCmdImport::StdCmdImport()
+//  : Command("Std_Import")
+//{
     // setting the
-    sGroup = QT_TR_NOOP("File");
-    sMenuText = QT_TR_NOOP("&Import...");
-    sToolTipText = QT_TR_NOOP("Import a file in the active document");
-    sWhatsThis = "Std_Import";
-    sStatusTip = QT_TR_NOOP("Import a file in the active document");
+//    sGroup        = QT_TR_NOOP("File");
+//    sMenuText     = QT_TR_NOOP("&Import...");
+//    sToolTipText  = QT_TR_NOOP("Import a file in the active document");
+//    sWhatsThis    = "Std_Import";
+//    sStatusTip    = QT_TR_NOOP("Import a file in the active document");
     //sPixmap       = "Open";
-    sAccel = "Ctrl+I";
-}
+//    sAccel        = "Ctrl+I";
+//}
 
-void StdCmdImport::activated(int iMsg)
-{
-    Q_UNUSED(iMsg);
+//void StdCmdImport::activated(int iMsg)
+//{
+//    Q_UNUSED(iMsg);
+//
+//    // fill the list of registered endings
+//    QString formatList;
+//    const char* supported = QT_TR_NOOP("Supported formats");
+//    const char* allFiles = QT_TR_NOOP("All files (*.*)");
+//    formatList = QObject::tr(supported);
+//    formatList += QLatin1String(" (");
+//
+//    std::vector<std::string> filetypes = App::GetApplication().getImportTypes();
+//    std::vector<std::string>::const_iterator it;
+//    for (it=filetypes.begin();it != filetypes.end();++it) {
+//        if (*it != "FCStd") {
+//            // ignore the project file format
+//            formatList += QLatin1String(" *.");
+//            formatList += QLatin1String(it->c_str());
+//        }
+//    }
+//
+//    formatList += QLatin1String(");;");
+//
+//    std::map<std::string, std::string> FilterList = App::GetApplication().getImportFilters();
+//    std::map<std::string, std::string>::const_iterator jt;
+//    for (jt=FilterList.begin();jt != FilterList.end();++jt) {
+//        // ignore the project file format
+//        if (jt->first.find("(*.FCStd)") == std::string::npos) {
+//            formatList += QLatin1String(jt->first.c_str());
+//            formatList += QLatin1String(";;");
+//        }
+//    }
+//    formatList += QObject::tr(allFiles);
+//
+//    Base::Reference<ParameterGrp> hPath = App::GetApplication().GetUserParameter().GetGroup("BaseApp")
+//                               ->GetGroup("Preferences")->GetGroup("General");
+//    QString selectedFilter = QString::fromStdString(hPath->GetASCII("FileImportFilter"));
+//    QStringList fileList = FileDialog::getOpenFileNames(getMainWindow(),
+//        QObject::tr("Import file"), QString(), formatList, &selectedFilter);
+//    if (!fileList.isEmpty()) {
+//        hPath->SetASCII("FileImportFilter", selectedFilter.toLatin1().constData());
+//        SelectModule::Dict dict = SelectModule::importHandler(fileList, selectedFilter);
+//
+//        bool emptyDoc = (getActiveGuiDocument()->getDocument()->countObjects() == 0);
+//        // load the files with the associated modules
+//        for (SelectModule::Dict::iterator it = dict.begin(); it != dict.end(); ++it) {
+//            getGuiApplication()->importFrom(it.key().toUtf8(),
+//                getActiveGuiDocument()->getDocument()->getName(),
+//                it.value().toLatin1());
+//        }
+//
+//        if (emptyDoc) {
+//            // only do a view fit if the document was empty before. See also parameter 'AutoFitToView' in importFrom()
+//            std::list<Gui::MDIView*> views = getActiveGuiDocument()->getMDIViewsOfType(Gui::View3DInventor::getClassTypeId());
+//            for (std::list<MDIView*>::iterator it = views.begin(); it != views.end(); ++it) {
+//                (*it)->viewAll();
+//            }
+//        }
+//    }
+//}
 
-    // fill the list of registered endings
-    QString formatList;
-    const char* supported = QT_TR_NOOP("Supported formats");
-    const char* allFiles = QT_TR_NOOP("All files (*.*)");
-    formatList = QObject::tr(supported);
-    formatList += QLatin1String(" (");
-
-    std::vector<std::string> filetypes = App::GetApplication().getImportTypes();
-    std::vector<std::string>::const_iterator it;
-    for (it = filetypes.begin(); it != filetypes.end(); ++it) {
-        if (*it != "FCStd") {
-            // ignore the project file format
-            formatList += QLatin1String(" *.");
-            formatList += QLatin1String(it->c_str());
-        }
-    }
-
-    formatList += QLatin1String(");;");
-
-    std::map<std::string, std::string> FilterList = App::GetApplication().getImportFilters();
-    std::map<std::string, std::string>::const_iterator jt;
-    for (jt = FilterList.begin(); jt != FilterList.end(); ++jt) {
-        // ignore the project file format
-        if (jt->first.find("(*.FCStd)") == std::string::npos) {
-            formatList += QLatin1String(jt->first.c_str());
-            formatList += QLatin1String(";;");
-        }
-    }
-    formatList += QObject::tr(allFiles);
-
-    Base::Reference<ParameterGrp> hPath = App::GetApplication().GetUserParameter().GetGroup("BaseApp")
-        ->GetGroup("Preferences")->GetGroup("General");
-    QString selectedFilter = QString::fromStdString(hPath->GetASCII("FileImportFilter"));
-    QStringList fileList = FileDialog::getOpenFileNames(getMainWindow(),
-        QObject::tr("Import file"), QString(), formatList, &selectedFilter);
-    if (!fileList.isEmpty()) {
-        hPath->SetASCII("FileImportFilter", selectedFilter.toLatin1().constData());
-        SelectModule::Dict dict = SelectModule::importHandler(fileList, selectedFilter);
-
-        bool emptyDoc = (getActiveGuiDocument()->getDocument()->countObjects() == 0);
-        // load the files with the associated modules
-        for (SelectModule::Dict::iterator it = dict.begin(); it != dict.end(); ++it) {
-            getGuiApplication()->importFrom(it.key().toUtf8(),
-                getActiveGuiDocument()->getDocument()->getName(),
-                it.value().toLatin1());
-        }
-
-        if (emptyDoc) {
-            // only do a view fit if the document was empty before. See also parameter 'AutoFitToView' in importFrom()
-            std::list<Gui::MDIView*> views = getActiveGuiDocument()->getMDIViewsOfType(Gui::View3DInventor::getClassTypeId());
-            for (std::list<MDIView*>::iterator it = views.begin(); it != views.end(); ++it) {
-                (*it)->viewAll();
-            }
-        }
-    }
-}
-
-bool StdCmdImport::isActive(void)
-{
-    return (getActiveGuiDocument() ? true : false);
-}
+//bool StdCmdImport::isActive(void)
+//{
+//    return (getActiveGuiDocument() ? true : false);
+//}
 
 
 //===========================================================================
@@ -519,16 +553,16 @@ bool StdCmdSaveAs::isActive(void)
 //===========================================================================
 DEF_STD_CMD_A(StdCmdSaveCopy)
 
-StdCmdSaveCopy::StdCmdSaveCopy()
-    :Command("Std_SaveCopy")
-{
-    sGroup = QT_TR_NOOP("File");
-    sMenuText = QT_TR_NOOP("Save a &Copy...");
-    sToolTipText = QT_TR_NOOP("Save a copy of the active document under a new file name");
-    sWhatsThis = "Std_SaveCopy";
-    sStatusTip = QT_TR_NOOP("Save a copy of the active document under a new file name");
-    //sPixmap       = "document-save-as";
-}
+//StdCmdSaveCopy::StdCmdSaveCopy()
+  //:Command("Std_SaveCopy")
+//{
+ // sGroup        = QT_TR_NOOP("File");
+//  sMenuText     = QT_TR_NOOP("Save a &Copy...");
+ // sToolTipText  = QT_TR_NOOP("Save a copy of the active document under a new file name");
+ // sWhatsThis    = "Std_SaveCopy";
+// sStatusTip    = QT_TR_NOOP("Save a copy of the active document under a new file name");
+  //sPixmap       = "document-save-as";
+//}
 
 void StdCmdSaveCopy::activated(int iMsg)
 {
@@ -577,39 +611,39 @@ bool StdCmdSaveAll::isActive(void)
 //===========================================================================
 // Std_Revert
 //===========================================================================
-DEF_STD_CMD_A(StdCmdRevert)
+//DEF_STD_CMD_A(StdCmdRevert)
 
-StdCmdRevert::StdCmdRevert()
-    :Command("Std_Revert")
-{
-    sGroup = QT_TR_NOOP("File");
-    sMenuText = QT_TR_NOOP("Revert");
-    sToolTipText = QT_TR_NOOP("Reverts to the saved version of this file");
-    sWhatsThis = "Std_Revert";
-    sStatusTip = QT_TR_NOOP("Reverts to the saved version of this file");
-    //sPixmap       = "document-revert";
-    eType = NoTransaction;
-}
+//StdCmdRevert::StdCmdRevert()
+ // :Command("Std_Revert")
+//{
+//    sGroup        = QT_TR_NOOP("File");
+//    sMenuText     = QT_TR_NOOP("Revert");
+//    sToolTipText  = QT_TR_NOOP("Reverts to the saved version of this file");
+//    sWhatsThis    = "Std_Revert";
+//    sStatusTip    = QT_TR_NOOP("Reverts to the saved version of this file");
+  //sPixmap       = "document-revert";
+ //   eType         = NoTransaction;
+//}
 
-void StdCmdRevert::activated(int iMsg)
-{
-    Q_UNUSED(iMsg);
-    QMessageBox msgBox(Gui::getMainWindow());
-    msgBox.setIcon(QMessageBox::Question);
-    msgBox.setWindowTitle(qApp->translate("Std_Revert", "Revert document"));
-    msgBox.setText(qApp->translate("Std_Revert", "This will discard all the changes since last file save."));
-    msgBox.setInformativeText(qApp->translate("Std_Revert", "Do you want to continue?"));
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    msgBox.setDefaultButton(QMessageBox::No);
-    int ret = msgBox.exec();
-    if (ret == QMessageBox::Yes)
-        doCommand(Command::App, "App.ActiveDocument.restore()");
-}
-
-bool StdCmdRevert::isActive(void)
-{
-    return (getActiveGuiDocument() ? true : false);
-}
+//void StdCmdRevert::activated(int iMsg)
+//{
+//    Q_UNUSED(iMsg);
+//    QMessageBox msgBox(Gui::getMainWindow());
+//    msgBox.setIcon(QMessageBox::Question);
+//    msgBox.setWindowTitle(qApp->translate("Std_Revert","Revert document"));
+//    msgBox.setText(qApp->translate("Std_Revert","This will discard all the changes since last file save."));
+//    msgBox.setInformativeText(qApp->translate("Std_Revert","Do you want to continue?"));
+//    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+//    msgBox.setDefaultButton(QMessageBox::No);
+//    int ret = msgBox.exec();
+//    if (ret == QMessageBox::Yes)
+//        doCommand(Command::App,"App.ActiveDocument.restore()");
+//}
+//
+//bool StdCmdRevert::isActive(void)
+//{
+//  return ( getActiveGuiDocument() ? true : false );
+//}
 
 //===========================================================================
 // Std_ProjectInfo
@@ -735,31 +769,31 @@ bool StdCmdPrintPreview::isActive(void)
 //===========================================================================
 // Std_PrintPdf
 //===========================================================================
-DEF_STD_CMD_A(StdCmdPrintPdf)
+//DEF_STD_CMD_A(StdCmdPrintPdf)
+//
+//StdCmdPrintPdf::StdCmdPrintPdf()
+//  :Command("Std_PrintPdf")
+//{
+//    sGroup        = QT_TR_NOOP("File");
+//    sMenuText     = QT_TR_NOOP("&Export PDF...");
+//    sToolTipText  = QT_TR_NOOP("Export the document as PDF");
+//    sWhatsThis    = "Std_PrintPdf";
+//    sStatusTip    = QT_TR_NOOP("Export the document as PDF");
+//}
 
-StdCmdPrintPdf::StdCmdPrintPdf()
-    :Command("Std_PrintPdf")
-{
-    sGroup = QT_TR_NOOP("File");
-    sMenuText = QT_TR_NOOP("&Export PDF...");
-    sToolTipText = QT_TR_NOOP("Export the document as PDF");
-    sWhatsThis = "Std_PrintPdf";
-    sStatusTip = QT_TR_NOOP("Export the document as PDF");
-}
-
-void StdCmdPrintPdf::activated(int iMsg)
-{
-    Q_UNUSED(iMsg);
-    if (getMainWindow()->activeWindow()) {
-        getMainWindow()->showMessage(QObject::tr("Exporting PDF..."));
-        getMainWindow()->activeWindow()->printPdf();
-    }
-}
-
-bool StdCmdPrintPdf::isActive(void)
-{
-    return getGuiApplication()->sendHasMsgToActiveView("PrintPdf");
-}
+//void StdCmdPrintPdf::activated(int iMsg)
+//{
+//    Q_UNUSED(iMsg);
+//    if (getMainWindow()->activeWindow()) {
+//        getMainWindow()->showMessage(QObject::tr("Exporting PDF..."));
+//        getMainWindow()->activeWindow()->printPdf();
+//    }
+//}
+//
+//bool StdCmdPrintPdf::isActive(void)
+//{
+//    return getGuiApplication()->sendHasMsgToActiveView("PrintPdf");
+//}
 
 //===========================================================================
 // Std_Quit
@@ -1064,6 +1098,36 @@ bool StdCmdDuplicateSelection::isActive(void)
 {
     return Gui::Selection().hasSelection();
 }
+//select
+DEF_STD_CMD_A(StdCmdSelect)
+
+StdCmdSelect::StdCmdSelect()
+    : Command("Std_Select")
+{
+    sGroup = QT_TR_NOOP("Tools");
+    sMenuText = QT_TR_NOOP("Select");
+    sToolTipText = QT_TR_NOOP("Select");
+    sWhatsThis = "Std_Select";
+    sStatusTip = QT_TR_NOOP("Select");
+#if QT_VERSION >= 0x040200
+    sPixmap = "edit-select";
+#endif
+    //sAccel        = "Ctrl+A"; // superseeds shortcuts for text edits
+}
+
+void StdCmdSelect::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    SelectionSingleton& rSel = Selection();
+    App::Document* doc = App::GetApplication().getActiveDocument();
+    std::vector<App::DocumentObject*> objs = doc->getObjectsOfType(App::DocumentObject::getClassTypeId());
+    rSel.setSelection(doc->getName(), objs);
+}
+bool StdCmdSelect::isActive(void)
+{
+    return false;
+}
+
 
 //===========================================================================
 // Std_SelectAll
@@ -1750,6 +1814,7 @@ namespace Gui {
 
         rcCmdMgr.addCommand(new StdCmdNew());
         rcCmdMgr.addCommand(new StdCmdOpen());
+        rcCmdMgr.addCommand(new StdCmdRecentFiles());
         //rcCmdMgr.addCommand(new StdCmdImport());
         //rcCmdMgr.addCommand(new StdCmdExport());
         //rcCmdMgr.addCommand(new StdCmdMergeProjects());
@@ -1757,7 +1822,7 @@ namespace Gui {
 
         rcCmdMgr.addCommand(new StdCmdSave());
         rcCmdMgr.addCommand(new StdCmdSaveAs());
-        //rcCmdMgr.addCommand(new StdCmdSaveCopy());
+        // rcCmdMgr.addCommand(new StdCmdSaveCopy());
         rcCmdMgr.addCommand(new StdCmdSaveAll());
         //rcCmdMgr.addCommand(new StdCmdRevert());
         //rcCmdMgr.addCommand(new StdCmdProjectInfo());
@@ -1773,14 +1838,16 @@ namespace Gui {
         rcCmdMgr.addCommand(new StdCmdPaste());
         //rcCmdMgr.addCommand(new StdCmdDuplicateSelection());
         rcCmdMgr.addCommand(new StdCmdSelectAll());
+        rcCmdMgr.addCommand(new StdCmdSelect());
         rcCmdMgr.addCommand(new StdCmdDelete());
         //rcCmdMgr.addCommand(new StdCmdRefresh());
         rcCmdMgr.addCommand(new StdCmdTransform());
-        rcCmdMgr.addCommand(new StdCmdPlacement());
+        //rcCmdMgr.addCommand(new StdCmdPlacement());
         rcCmdMgr.addCommand(new StdCmdTransformManip());
-        rcCmdMgr.addCommand(new StdCmdAlignment());
-        rcCmdMgr.addCommand(new StdCmdEdit());
+        //rcCmdMgr.addCommand(new StdCmdAlignment());
+        //rcCmdMgr.addCommand(new StdCmdEdit());
         rcCmdMgr.addCommand(new StdCmdExpression());
+
     }
 
 } // namespace Gui
