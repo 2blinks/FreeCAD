@@ -349,12 +349,15 @@ inline void SketcherAddWorkspaceSketchExtra<Gui::MenuItem>(Gui::MenuItem& sketch
 
 template <typename T>
 inline void Sketcher_addWorkbenchSketchActions(T& sketch){
-    sketch  << "Sketcher_NewSketch"
-            << "Sketcher_EditSketch"
-            << "Sketcher_LeaveSketch"
-            << "Sketcher_ViewSketch"
-            << "Sketcher_ViewSection"
-            << "Sketcher_MapSketch";
+    sketch  //<< "Sketcher_NewSketch"
+        << "Sketcher geometries"
+        << "Sketcher tools"
+        << "Sketcher B-spline tools"
+        << "Sketcher_EditSketch";
+            //<< "Sketcher_LeaveSketch"
+            //<< "Sketcher_ViewSketch"
+            //<< "Sketcher_ViewSection"
+            //<< "Sketcher_MapSketch";
     SketcherAddWorkspaceSketchExtra( sketch );
 }
 

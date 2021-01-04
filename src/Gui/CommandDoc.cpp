@@ -81,6 +81,7 @@ FC_LOG_LEVEL_INIT("Command", false)
 using namespace Gui;
 
 
+
 //===========================================================================
 // Std_Open
 //===========================================================================
@@ -465,6 +466,7 @@ void StdCmdNew::activated(int iMsg)
     if (hViewGrp->GetBool("ShowAxisCross"))
         doCommand(Command::Gui, "Gui.ActiveDocument.ActiveView.setAxisCross(True)");
 }
+
 
 //===========================================================================
 // Std_Save
@@ -1110,7 +1112,7 @@ StdCmdSelect::StdCmdSelect()
     sWhatsThis = "Std_Select";
     sStatusTip = QT_TR_NOOP("Select");
 #if QT_VERSION >= 0x040200
-    sPixmap = "edit-select";
+    //sPixmap = "edit-select";
 #endif
     //sAccel        = "Ctrl+A"; // superseeds shortcuts for text edits
 }

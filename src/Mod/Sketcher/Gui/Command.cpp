@@ -132,6 +132,7 @@ namespace SketcherGui {
 } //namespace SketcherGui
 
 
+
 /* Sketch commands =======================================================*/
 DEF_STD_CMD_A(CmdSketcherNewSketch)
 
@@ -150,6 +151,15 @@ CmdSketcherNewSketch::CmdSketcherNewSketch()
 void CmdSketcherNewSketch::activated(int iMsg)
 {
     Q_UNUSED(iMsg);
+    QString cmd;
+    cmd = QString::fromLatin1("App.newDocument(\"%1\")")
+        .arg(qApp->translate("StdCmdNew", "Unnamed"));
+    runCommand(Command::Doc, cmd.toUtf8());
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewDefaultOrientation()");
+
+    ParameterGrp::handle hViewGrp = App::GetApplication().GetParameterGroupByPath("User parameter:BaseApp/Preferences/View");
+    if (hViewGrp->GetBool("ShowAxisCross"))
+        doCommand(Command::Gui, "Gui.ActiveDocument.ActiveView.setAxisCross(True)");
     Attacher::eMapMode mapmode = Attacher::mmDeactivated;
     bool bAttach = false;
     if (Gui::Selection().hasSelection()) {
@@ -411,6 +421,8 @@ bool CmdSketcherReorientSketch::isActive(void)
     return Gui::Selection().countObjectsOfType
     (Sketcher::SketchObject::getClassTypeId()) == 1;
 }
+
+
 
 DEF_STD_CMD_A(CmdSketcherMapSketch)
 
@@ -873,14 +885,14 @@ void CreateSketcherCommands(void)
 {
     Gui::CommandManager& rcCmdMgr = Gui::Application::Instance->commandManager();
 
-    // rcCmdMgr.addCommand(new CmdSketcherNewSketch());
+    rcCmdMgr.addCommand(new CmdSketcherNewSketch());
     rcCmdMgr.addCommand(new CmdSketcherEditSketch());
     //rcCmdMgr.addCommand(new CmdSketcherLeaveSketch());
-   // rcCmdMgr.addCommand(new CmdSketcherReorientSketch());
+    // rcCmdMgr.addCommand(new CmdSketcherReorientSketch());
     //rcCmdMgr.addCommand(new CmdSketcherMapSketch());
     //rcCmdMgr.addCommand(new CmdSketcherViewSketch());
     rcCmdMgr.addCommand(new CmdSketcherValidateSketch());
     //rcCmdMgr.addCommand(new CmdSketcherMirrorSketch());
-   // rcCmdMgr.addCommand(new CmdSketcherMergeSketches());
+    // rcCmdMgr.addCommand(new CmdSketcherMergeSketches());
     //rcCmdMgr.addCommand(new CmdSketcherViewSection());
 }

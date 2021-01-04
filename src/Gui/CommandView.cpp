@@ -1337,8 +1337,8 @@ StdCmdViewRedraw::StdCmdViewRedraw()
     sToolTipText = QT_TR_NOOP("Redraw");
     sWhatsThis = "Std_ViewRedraw";
     sStatusTip = QT_TR_NOOP("Redraw");
-    sPixmap = "view-redraw";
-    sAccel = "Shift+Left";
+    //sPixmap = "view-redraw";
+    //sAccel = "Shift+Left";
     eType = Alter3DView;
 }
 void StdCmdViewRedraw::activated(int iMsg)
@@ -1354,12 +1354,12 @@ StdCmdViewDefineMaterials::StdCmdViewDefineMaterials()
     : Command("Std_ViewDefineMaterials")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("DefineMaterials");
+    sMenuText = QT_TR_NOOP("Define Materials");
     sToolTipText = QT_TR_NOOP("DefineMaterials");
     sWhatsThis = "Std_ViewDefineMaterials";
     sStatusTip = QT_TR_NOOP("DefineMaterials");
-    sPixmap = "view-DefineMaterials";
-    sAccel = "Shift+Left";
+    //sPixmap = "view-DefineMaterials";
+    //sAccel = "Shift+Left";
     eType = Alter3DView;
 }
 void StdCmdViewDefineMaterials::activated(int iMsg)
@@ -1373,12 +1373,12 @@ StdCmdViewDefineSection::StdCmdViewDefineSection()
     : Command("Std_ViewDefineSection")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("DefineSection");
+    sMenuText = QT_TR_NOOP("Define Section");
     sToolTipText = QT_TR_NOOP("DefineSection");
     sWhatsThis = "Std_ViewDefineSection";
     sStatusTip = QT_TR_NOOP("DefineSection");
-    sPixmap = "view-DefineSection";
-    sAccel = "Shift+Left";
+    //sPixmap = "view-DefineSection";
+    //sAccel = "Shift+Left";
     eType = Alter3DView;
 }
 void StdCmdViewDefineSection::activated(int iMsg)
@@ -1392,12 +1392,12 @@ StdCmdViewDefineBoundaryConditions::StdCmdViewDefineBoundaryConditions()
     : Command("Std_ViewDefineBoundaryConditions")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("DefineBoundaryConditions");
+    sMenuText = QT_TR_NOOP("Define Boundary Conditions");
     sToolTipText = QT_TR_NOOP("DefineBoundaryConditions");
     sWhatsThis = "Std_ViewDefineBoundaryConditions";
     sStatusTip = QT_TR_NOOP("DefineBoundaryConditions");
-    sPixmap = "view-DefineBoundaryConditions";
-    sAccel = "Shift+Left";
+    //sPixmap = "view-DefineBoundaryConditions";
+    //sAccel = "Shift+Left";
     eType = Alter3DView;
 }
 void StdCmdViewDefineBoundaryConditions::activated(int iMsg)
@@ -1411,12 +1411,12 @@ StdCmdViewDefineLoads::StdCmdViewDefineLoads()
     : Command("Std_ViewDefineLoads")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("DefineLoads");
+    sMenuText = QT_TR_NOOP("Define Loads");
     sToolTipText = QT_TR_NOOP("DefineLoads");
     sWhatsThis = "Std_ViewDefineLoads";
     sStatusTip = QT_TR_NOOP("DefineLoads");
-    sPixmap = "view-DefineLoads";
-    sAccel = "Shift+Left";
+    //sPixmap = "view-DefineLoads";
+    //sAccel = "Shift+Left";
     eType = Alter3DView;
 }
 void StdCmdViewDefineLoads::activated(int iMsg)
@@ -1430,12 +1430,12 @@ StdCmdViewRunAnalysis::StdCmdViewRunAnalysis()
     : Command("Std_ViewRunAnalysis")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("RunAnalysis");
+    sMenuText = QT_TR_NOOP("Run Analysis");
     sToolTipText = QT_TR_NOOP("RunAnalysis");
     sWhatsThis = "Std_ViewRunAnalysis";
     sStatusTip = QT_TR_NOOP("RunAnalysis");
-    sPixmap = "view-RunAnalysis";
-    sAccel = "Shift+Left";
+    //sPixmap = "view-RunAnalysis";
+    //sAccel = "Shift+Left";
     eType = Alter3DView;
 }
 void StdCmdViewRunAnalysis::activated(int iMsg)
@@ -1449,12 +1449,12 @@ StdCmdViewSectionProperties::StdCmdViewSectionProperties()
     : Command("Std_ViewSectionProperties")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("SectionProperties");
+    sMenuText = QT_TR_NOOP("Section Properties");
     sToolTipText = QT_TR_NOOP("SectionProperties");
     sWhatsThis = "Std_ViewSectionPropertiess";
     sStatusTip = QT_TR_NOOP("SectionProperties");
-    sPixmap = "view-SectionProperties";
-    sAccel = "Shift+Left";
+    //sPixmap = "view-SectionProperties";
+    //sAccel = "Shift+Left";
     eType = Alter3DView;
 }
 void StdCmdViewSectionProperties::activated(int iMsg)
@@ -1469,12 +1469,12 @@ StdCmdViewPlotResults::StdCmdViewPlotResults()
     : Command("Std_ViewPlotResults")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("PlotResults");
+    sMenuText = QT_TR_NOOP("Plot Results");
     sToolTipText = QT_TR_NOOP("PlotResults");
     sWhatsThis = "Std_ViewPlotResults";
     sStatusTip = QT_TR_NOOP("PlotResults");
-    sPixmap = "view-PlotResults";
-    sAccel = "Shift+Left";
+   //sPixmap = "view-PlotResults";
+   //sAccel = "Shift+Left";
     eType = Alter3DView;
 }
 void StdCmdViewPlotResults::activated(int iMsg)
@@ -1488,12 +1488,12 @@ StdCmdViewListResults::StdCmdViewListResults()
     : Command("Std_ViewListResults")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("ListResults");
+    sMenuText = QT_TR_NOOP("List Results");
     sToolTipText = QT_TR_NOOP("ListResults");
     sWhatsThis = "Std_ViewListResults";
     sStatusTip = QT_TR_NOOP("ListResults");
-    sPixmap = "view-ListResults";
-    sAccel = "Shift+Left";
+    //sPixmap = "view-ListResults";
+    //sAccel = "Shift+Left";
     eType = Alter3DView;
 }
 void StdCmdViewListResults::activated(int iMsg)
@@ -1507,12 +1507,12 @@ StdCmdViewResultTools::StdCmdViewResultTools()
     : Command("Std_ViewResultTools")
 {
     sGroup = QT_TR_NOOP("Standard-View");
-    sMenuText = QT_TR_NOOP("ResultTools");
+    sMenuText = QT_TR_NOOP("Result Tools");
     sToolTipText = QT_TR_NOOP("ResultTools");
     sWhatsThis = "Std_ViewResultTools";
     sStatusTip = QT_TR_NOOP("ResultTools");
-    sPixmap = "view-ResultTools";
-    sAccel = "Shift+Left";
+    //sPixmap = "view-ResultTools";
+    //sAccel = "Shift+Left";
     eType = Alter3DView;
 }
 void StdCmdViewResultTools::activated(int iMsg)
@@ -3678,7 +3678,7 @@ namespace Gui {
 
         rcCmdMgr.addCommand(new StdCmdViewCreate());
         rcCmdMgr.addCommand(new StdViewScreenShot());
-        //rcCmdMgr.addCommand(new StdMainFullscreen());
+        rcCmdMgr.addCommand(new StdMainFullscreen());
         rcCmdMgr.addCommand(new StdViewDockUndockFullscreen());
         rcCmdMgr.addCommand(new StdCmdSetAppearance());
         rcCmdMgr.addCommand(new StdCmdToggleVisibility());
