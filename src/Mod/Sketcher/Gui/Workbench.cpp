@@ -89,13 +89,22 @@ Gui::MenuItem* Workbench::setupMenuBar() const
     virtualspace->setCommand("Sketcher virtual space");
     addSketcherWorkbenchVirtualSpace(*virtualspace);
 
+    Gui::MenuItem* UserInterface = new Gui::MenuItem;
+    root->insertItem(profile, UserInterface);
+    sketch->setCommand("UserInterface");
+
+    Gui::MenuItem* FeaturedManagerTree = new Gui::MenuItem();
+    FeaturedManagerTree->setCommand("FeaturedManagerTree");
+    addSketcherWorkbenchVirtualSpace(*FeaturedManagerTree);
+
     addSketcherWorkbenchSketchActions( *sketch );
     *sketch << geom
             << cons
             << consaccel
             << bsplines
             << virtualspace;
-
+    
+    *UserInterface << FeaturedManagerTree;
     return root;
 }
 

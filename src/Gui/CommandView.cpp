@@ -1346,7 +1346,10 @@ void StdCmdViewRedraw::activated(int iMsg)
     Q_UNUSED(iMsg);
     doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRedraw()");
 }
+
+//closeDocument(newDoc->getName());
 //simulation code
+
 //Define Materials
 DEF_3DV_CMD(StdCmdViewDefineMaterials)
 

@@ -288,7 +288,33 @@ void CmdSketcherEditSketch::activated(int iMsg)
         doCommand(Gui, "Gui.activeDocument().setEdit('%s')", Sketch->getNameInDocument());
     }
 }
+//DEF_STD_CMD_A(CmdSketcherExitSketch)
 
+//CmdSketcherExitSketch::CmdSketcherExitSketch()
+ //   :Command("Sketcher_ExitSketch")
+//{
+//    sAppModule = "Sketcher";
+ //   sGroup = QT_TR_NOOP("Sketcher");
+ //   sMenuText = QT_TR_NOOP("Exit sketch");
+//    sToolTipText = QT_TR_NOOP("Exit the selected sketch");
+ //   sWhatsThis = "Sketcher_ExitSketch";
+ //   sStatusTip = sToolTipText;
+ //   sPixmap = "Sketcher_EditSketch";
+//}
+
+//void CmdSketcherEditSketch::activated(int iMsg)
+//{
+    //Q_UNUSED(iMsg);
+    //closeDocument(newDoc->getName());
+   // Gui::SelectionFilter SketchFilter("SELECT Sketcher::SketchObject COUNT 1");
+
+   // if (SketchFilter.match()) {
+   //     Sketcher::SketchObject* Sketch = static_cast<Sketcher::SketchObject*>(SketchFilter.Result[0][0].getObject());
+   //     openCommand("Edit Sketch");
+   //     doCommand(Gui, "Gui.activeDocument().setEdit('%s')", Sketch->getNameInDocument());
+   // }
+//}
+//closeDocument(newDoc->getName());
 bool CmdSketcherEditSketch::isActive(void)
 {
     return Gui::Selection().countObjectsOfType(Sketcher::SketchObject::getClassTypeId()) == 1;

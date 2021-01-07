@@ -798,6 +798,7 @@ void NaviCubeImplementation::handleResize() {
 		}
 		else { // initial position
 			switch (m_Corner) {
+				
 			case NaviCube::TopLeftCorner:
 				m_CubeWidgetPosX = m_CubeWidgetSize*1.1 / 2;
 				m_CubeWidgetPosY = view[1] - m_CubeWidgetSize*1.1 / 2;
@@ -815,6 +816,7 @@ void NaviCubeImplementation::handleResize() {
 				m_CubeWidgetPosY = m_CubeWidgetSize*1.1 / 2;
 				break;
 			}
+			
 		}
 		m_PrevWidth = view[0];
 		m_PrevHeight = view[1];
