@@ -262,6 +262,67 @@ bool CmdSketcherNewSketch::isActive(void)
     else
         return false;
 }
+//Exit and save sketch
+DEF_STD_CMD_A(CmdSketcherExitSketch)
+
+CmdSketcherExitSketch::CmdSketcherExitSketch()
+    :Command("Sketcher_ExitSketch")
+{
+    sAppModule = "Sketcher";
+    sGroup = QT_TR_NOOP("Sketcher");
+    sMenuText = QT_TR_NOOP("Exit and save sketch");
+    sToolTipText = QT_TR_NOOP("Exit the selected sketch");
+    sWhatsThis = "Sketcher_ExitSketch";
+    sStatusTip = sToolTipText;
+    sPixmap = "Sketcher_EditSketch";
+}
+
+void CmdSketcherExitSketch::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    //Gui::SelectionFilter SketchFilter("SELECT Sketcher::SketchObject COUNT 1");
+
+    //if (SketchFilter.match()) {
+     //   Sketcher::SketchObject* Sketch = static_cast<Sketcher::SketchObject*>(SketchFilter.Result[0][0].getObject());
+    //    openCommand("Edit Sketch");
+    //    doCommand(Gui, "Gui.activeDocument().setEdit('%s')", Sketch->getNameInDocument());
+   // }
+}
+bool CmdSketcherExitSketch::isActive(void)
+{
+    //return Gui::Selection().countObjectsOfType(Sketcher::SketchObject::getClassTypeId()) == 1;
+    return false;
+}
+//Exit without saving sketch
+DEF_STD_CMD_A(CmdSketcherExitNoSaveSketch)
+CmdSketcherExitNoSaveSketch::CmdSketcherExitNoSaveSketch()
+    :Command("Sketcher_ExitNoSaveSketch")
+{
+    sAppModule = "Sketcher";
+    sGroup = QT_TR_NOOP("Sketcher");
+    sMenuText = QT_TR_NOOP("Exit Sketch without Saving Changes");
+    sToolTipText = QT_TR_NOOP("Exit the selected sketch");
+    sWhatsThis = "Sketcher_ExitNoSaveSketch";
+    sStatusTip = sToolTipText;
+    sPixmap = "Sketcher_EditSketch";
+}
+
+void CmdSketcherExitNoSaveSketch::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    //Gui::SelectionFilter SketchFilter("SELECT Sketcher::SketchObject COUNT 1");
+
+    //if (SketchFilter.match()) {
+     //   Sketcher::SketchObject* Sketch = static_cast<Sketcher::SketchObject*>(SketchFilter.Result[0][0].getObject());
+    //    openCommand("Edit Sketch");
+    //    doCommand(Gui, "Gui.activeDocument().setEdit('%s')", Sketch->getNameInDocument());
+   // }
+}
+bool CmdSketcherExitNoSaveSketch::isActive(void)
+{
+    //return Gui::Selection().countObjectsOfType(Sketcher::SketchObject::getClassTypeId()) == 1;
+    return false;
+}
 
 DEF_STD_CMD_A(CmdSketcherEditSketch)
 
@@ -288,7 +349,33 @@ void CmdSketcherEditSketch::activated(int iMsg)
         doCommand(Gui, "Gui.activeDocument().setEdit('%s')", Sketch->getNameInDocument());
     }
 }
+//DEF_STD_CMD_A(CmdSketcherExitSketch)
 
+//CmdSketcherExitSketch::CmdSketcherExitSketch()
+ //   :Command("Sketcher_ExitSketch")
+//{
+//    sAppModule = "Sketcher";
+ //   sGroup = QT_TR_NOOP("Sketcher");
+ //   sMenuText = QT_TR_NOOP("Exit sketch");
+//    sToolTipText = QT_TR_NOOP("Exit the selected sketch");
+ //   sWhatsThis = "Sketcher_ExitSketch";
+ //   sStatusTip = sToolTipText;
+ //   sPixmap = "Sketcher_EditSketch";
+//}
+
+//void CmdSketcherEditSketch::activated(int iMsg)
+//{
+    //Q_UNUSED(iMsg);
+    //closeDocument(newDoc->getName());
+   // Gui::SelectionFilter SketchFilter("SELECT Sketcher::SketchObject COUNT 1");
+
+   // if (SketchFilter.match()) {
+   //     Sketcher::SketchObject* Sketch = static_cast<Sketcher::SketchObject*>(SketchFilter.Result[0][0].getObject());
+   //     openCommand("Edit Sketch");
+   //     doCommand(Gui, "Gui.activeDocument().setEdit('%s')", Sketch->getNameInDocument());
+   // }
+//}
+//closeDocument(newDoc->getName());
 bool CmdSketcherEditSketch::isActive(void)
 {
     return Gui::Selection().countObjectsOfType(Sketcher::SketchObject::getClassTypeId()) == 1;
@@ -888,6 +975,8 @@ void CreateSketcherCommands(void)
 
     rcCmdMgr.addCommand(new CmdSketcherNewSketch());
     rcCmdMgr.addCommand(new CmdSketcherEditSketch());
+    rcCmdMgr.addCommand(new CmdSketcherExitSketch());
+    rcCmdMgr.addCommand(new CmdSketcherExitNoSaveSketch());
     //rcCmdMgr.addCommand(new CmdSketcherLeaveSketch());
     // rcCmdMgr.addCommand(new CmdSketcherReorientSketch());
     //rcCmdMgr.addCommand(new CmdSketcherMapSketch());

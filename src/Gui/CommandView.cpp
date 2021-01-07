@@ -1326,6 +1326,27 @@ void StdCmdViewRotateLeft::activated(int iMsg)
     Q_UNUSED(iMsg);
     doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRotateLeft()");
 }
+//rotate
+DEF_3DV_CMD(StdCmdViewRotate)
+
+StdCmdViewRotate::StdCmdViewRotate()
+    : Command("Std_ViewRotate")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("Rotate");
+    sToolTipText = QT_TR_NOOP("Rotate");
+    sWhatsThis = "Std_ViewRotate";
+    sStatusTip = QT_TR_NOOP("Rotate");
+   // sPixmap = "view-rotate-left";
+   // sAccel = "Shift+Left";
+   // eType = Alter3DView;
+}
+
+void StdCmdViewRotate::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRotateLeft()");
+}
 // redraw
 DEF_3DV_CMD(StdCmdViewRedraw)
 
@@ -1346,7 +1367,10 @@ void StdCmdViewRedraw::activated(int iMsg)
     Q_UNUSED(iMsg);
     doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRedraw()");
 }
+
+//closeDocument(newDoc->getName());
 //simulation code
+
 //Define Materials
 DEF_3DV_CMD(StdCmdViewDefineMaterials)
 
@@ -1520,6 +1544,24 @@ void StdCmdViewResultTools::activated(int iMsg)
     Q_UNUSED(iMsg);
     doCommand(Command::Gui, "Gui.activeDocument().activeView().viewResultTools()");
 }
+DEF_3DV_CMD(StdCmdViewExitSaveSketch)
+StdCmdViewExitSaveSketch::StdCmdViewExitSaveSketch()
+    : Command("Std_ExitSaveSketch")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("Exit and Save Sketch");
+    sToolTipText = QT_TR_NOOP("ExitSaveSketch");
+    sWhatsThis = "Std_ExitSaveSketch";
+    sStatusTip = QT_TR_NOOP("ExitSaveSketch");
+    //sPixmap = "view-ResultTools";
+    //sAccel = "Shift+Left";
+    eType = Alter3DView;
+}
+void StdCmdViewExitSaveSketch::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    doCommand(Command::Gui, "Gui.activeDocument().activeView().viewExitSaveSketch()");
+}
 //===========================================================================
 // Std_ViewRotateRight
 //===========================================================================
@@ -1543,11 +1585,32 @@ void StdCmdViewRotateRight::activated(int iMsg)
     Q_UNUSED(iMsg);
     doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRotateRight()");
 }
+//Hide/Show
+DEF_3DV_CMD(StdCmdViewHideShow)
 
+StdCmdViewHideShow::StdCmdViewHideShow()
+    : Command("Std_ViewHideShow")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("Hide/Show");
+    sToolTipText = QT_TR_NOOP("");
+    sWhatsThis = "Std_ViewHide/Show";
+    sStatusTip = QT_TR_NOOP("");
+    //sPixmap = "view-rotate-right";
+    //sAccel = "Shift+Right";
+   // eType = Alter3DView;
+}
+
+void StdCmdViewHideShow::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    //doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRotateRight()");
+}
 
 //===========================================================================
 // Std_ViewFitAll
 //===========================================================================
+//NavigationStyle::PANNING
 DEF_STD_CMD_A(StdCmdViewFitAll)
 
 StdCmdViewFitAll::StdCmdViewFitAll()
@@ -1558,24 +1621,52 @@ StdCmdViewFitAll::StdCmdViewFitAll()
     sToolTipText = QT_TR_NOOP("Fits the whole content on the screen");
     sWhatsThis = "Std_ViewFitAll";
     sStatusTip = QT_TR_NOOP("Fits the whole content on the screen");
-    sPixmap = "zoom-all";
-    sAccel = "V, F";
-    eType = Alter3DView;
+    //sPixmap = "zoom-all";
+    //sAccel = "V, F";
+    //eType = Alter3DView;
 }
 
 void StdCmdViewFitAll::activated(int iMsg)
 {
     Q_UNUSED(iMsg);
-    //doCommand(Command::Gui,"Gui.activeDocument().activeView().fitAll()");
+    doCommand(Command::Gui,"Gui.activeDocument().activeView().fitAll()");
     doCommand(Command::Gui, "Gui.SendMsgToActiveView(\"ViewFit\")");
 }
 
 bool StdCmdViewFitAll::isActive(void)
 {
-    //return isViewOfType(Gui::View3DInventor::getClassTypeId());
+    return isViewOfType(Gui::View3DInventor::getClassTypeId());
     return getGuiApplication()->sendHasMsgToActiveView("ViewFit");
 }
+// panning
+DEF_STD_CMD_A(StdCmdViewPan)
 
+StdCmdViewPan::StdCmdViewPan()
+    : Command("Std_ViewPan")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("Pan");
+    sToolTipText = QT_TR_NOOP("");
+    sWhatsThis = "Std_ViewPan";
+    sStatusTip = QT_TR_NOOP("");
+    //sPixmap = "zoom-all";
+    //sAccel = "V, F";
+    //eType = Alter3DView;
+}
+
+void StdCmdViewPan::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+   NavigationStyle::PANNING;
+    //doCommand(Command::Gui, "Gui.SendMsgToActiveView(\"ViewFit\")");
+}
+
+bool StdCmdViewPan::isActive(void)
+{
+    //return isViewOfType(Gui::View3DInventor::getClassTypeId());
+   //return getGuiApplication()->sendHasMsgToActiveView("ViewFit");
+    return true;
+}
 //===========================================================================
 // Std_ViewFitSelection
 //===========================================================================
@@ -1599,13 +1690,13 @@ StdCmdViewFitSelection::StdCmdViewFitSelection()
 void StdCmdViewFitSelection::activated(int iMsg)
 {
     Q_UNUSED(iMsg);
-    //doCommand(Command::Gui,"Gui.activeDocument().activeView().fitAll()");
+    doCommand(Command::Gui,"Gui.activeDocument().activeView().fitAll()");
     doCommand(Command::Gui, "Gui.SendMsgToActiveView(\"ViewSelection\")");
 }
 
 bool StdCmdViewFitSelection::isActive(void)
 {
-    //return isViewOfType(Gui::View3DInventor::getClassTypeId());
+    return isViewOfType(Gui::View3DInventor::getClassTypeId());
     return getGuiApplication()->sendHasMsgToActiveView("ViewSelection");
 }
 
@@ -3046,7 +3137,7 @@ StdCmdMeasureDistance::StdCmdMeasureDistance()
     : Command("Std_MeasureDistance")
 {
     sGroup = QT_TR_NOOP("View");
-    sMenuText = QT_TR_NOOP("Measure distance");
+    sMenuText = QT_TR_NOOP("Measure...");
     sToolTipText = QT_TR_NOOP("Measure distance");
     sWhatsThis = "Std_MeasureDistance";
     sStatusTip = QT_TR_NOOP("Measure distance");
@@ -3640,6 +3731,10 @@ namespace Gui {
         CommandManager& rcCmdMgr = Application::Instance->commandManager();
 
         // views
+        rcCmdMgr.addCommand(new StdCmdViewHideShow());
+        rcCmdMgr.addCommand(new StdCmdViewPan());
+        rcCmdMgr.addCommand(new StdCmdViewFitSelection());
+        rcCmdMgr.addCommand(new StdCmdViewFitAll());
         rcCmdMgr.addCommand(new StdCmdViewBottom());
         rcCmdMgr.addCommand(new StdCmdViewFront());
         rcCmdMgr.addCommand(new StdCmdViewLeft());
@@ -3652,8 +3747,10 @@ namespace Gui {
         //rcCmdMgr.addCommand(new StdCmdViewFitAll());
         rcCmdMgr.addCommand(new StdCmdViewVR());
         //rcCmdMgr.addCommand(new StdCmdViewFitSelection());
+        rcCmdMgr.addCommand(new StdCmdViewRotate());
         rcCmdMgr.addCommand(new StdCmdViewRotateLeft());
         rcCmdMgr.addCommand(new StdCmdViewRotateRight());
+        rcCmdMgr.addCommand(new StdCmdViewExitSaveSketch);
         rcCmdMgr.addCommand(new StdCmdViewRedraw());
         rcCmdMgr.addCommand(new StdCmdViewDefineMaterials);
         rcCmdMgr.addCommand(new StdCmdViewDefineSection);

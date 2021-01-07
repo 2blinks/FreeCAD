@@ -360,7 +360,39 @@ Action * StdCmdToolBarMenu::createAction(void)
     applyCommandData(this->className(), pcAction);
     return pcAction;
 }
+//user interface
 
+DEF_STD_CMD_AC(StdCmdUserInterfaceMenu)
+
+StdCmdUserInterfaceMenu::StdCmdUserInterfaceMenu()
+    : Command("Std_UserInterfaceMenu")
+{
+    sGroup = QT_TR_NOOP("View");
+    sMenuText = QT_TR_NOOP("User&Interface");
+    sToolTipText = QT_TR_NOOP("Toggles this window");
+    sWhatsThis = "Std_UserInterfaceMenu";
+    sStatusTip = QT_TR_NOOP("Toggles this window");
+    eType = 0;
+}
+
+void StdCmdUserInterfaceMenu::activated(int iMsg)
+{
+    // Handled by the related QAction objects
+    Q_UNUSED(iMsg);
+}
+
+bool StdCmdUserInterfaceMenu::isActive(void)
+{
+    return true;
+}
+
+Action* StdCmdUserInterfaceMenu::createAction(void)
+{
+    Action* UserInterface;
+    UserInterface = new ToolBarAction(this, getMainWindow());
+    applyCommandData(this->className(), UserInterface);
+    return UserInterface;
+}
 //===========================================================================
 // Std_ViewStatusBar
 //===========================================================================
@@ -477,6 +509,7 @@ void CreateWindowStdCommands(void)
     rcCmdMgr.addCommand(new StdCmdWindows());
     rcCmdMgr.addCommand(new StdCmdDockViewMenu());
     rcCmdMgr.addCommand(new StdCmdToolBarMenu());
+    rcCmdMgr.addCommand(new StdCmdUserInterfaceMenu());
     rcCmdMgr.addCommand(new StdCmdWindowsMenu());
     rcCmdMgr.addCommand(new StdCmdStatusBar());
     rcCmdMgr.addCommand(new StdCmdUserInterface());
