@@ -597,11 +597,11 @@ MenuItem* StdWorkbench::setupMenuBar() const
        // << "Std_ToggleVisibility" << "Std_ToggleNavigation"
         //<< "Std_SetAppearance" << "Std_RandomColor" << "Separator" 
        // << "Std_Workbench" 
-<<<<<<< Updated upstream
+
         << "Std_ToolBarMenu" /*<< "Std_UserInterface"*/ 
-=======
+
         << "Std_ToolBarMenu" /*<< "Std_UserInterface"*/  << "Std_UserInterfaceMenu" << "Sketcher_NewSketch"
->>>>>>> Stashed changes
+
         //<< "Std_DockViewMenu" 
         << "Std_MainFullscreen";
     // << "Std_TreeViewActions"
