@@ -1164,7 +1164,68 @@ bool StdCmdSelectAll::isActive(void)
 {
     return App::GetApplication().getActiveDocument() != 0;
 }
+//Invert selection
+DEF_STD_CMD_A(StdCmdInvertSelection)
 
+StdCmdInvertSelection::StdCmdInvertSelection()
+    : Command("Std_InvertSelection")
+{
+    sGroup = QT_TR_NOOP("Edit");
+    sMenuText = QT_TR_NOOP("Invert Selection");
+    sToolTipText = QT_TR_NOOP("InvertSelection");
+    sWhatsThis = "Std_InvertSelection";
+    sStatusTip = QT_TR_NOOP("Invert Selection");
+#if QT_VERSION >= 0x040200
+    //sPixmap = "edit-select-all";
+#endif
+    //sAccel        = "Ctrl+A"; // superseeds shortcuts for text edits
+}
+
+void StdCmdInvertSelection::activated(int iMsg)
+{
+    //Q_UNUSED(iMsg);
+    //SelectionSingleton& rSel = Selection();
+    //App::Document* doc = App::GetApplication().getActiveDocument();
+    //std::vector<App::DocumentObject*> objs = doc->getObjectsOfType(App::DocumentObject::getClassTypeId());
+    //rSel.setSelection(doc->getName(), objs);
+}
+
+bool StdCmdInvertSelection::isActive(void)
+{
+    //return App::GetApplication().getActiveDocument() != 0;
+    return false;
+}
+//options...
+DEF_STD_CMD_A(StdCmdOptions)
+
+StdCmdOptions::StdCmdOptions()
+    : Command("Std_Options")
+{
+    sGroup = QT_TR_NOOP("Edit");
+    sMenuText = QT_TR_NOOP("Options...");
+    sToolTipText = QT_TR_NOOP("Options");
+    sWhatsThis = "Std_Options";
+    sStatusTip = QT_TR_NOOP("Options");
+#if QT_VERSION >= 0x040200
+    //sPixmap = "edit-select-all";
+#endif
+    //sAccel        = "Ctrl+A"; // superseeds shortcuts for text edits
+}
+
+void StdCmdOptions::activated(int iMsg)
+{
+    //Q_UNUSED(iMsg);
+    //SelectionSingleton& rSel = Selection();
+    //App::Document* doc = App::GetApplication().getActiveDocument();
+    //std::vector<App::DocumentObject*> objs = doc->getObjectsOfType(App::DocumentObject::getClassTypeId());
+    //rSel.setSelection(doc->getName(), objs);
+}
+
+bool StdCmdOptions::isActive(void)
+{
+    //return App::GetApplication().getActiveDocument() != 0;
+    return false;
+}
 //===========================================================================
 // Std_Delete
 //===========================================================================
@@ -1840,6 +1901,8 @@ namespace Gui {
         rcCmdMgr.addCommand(new StdCmdPaste());
         //rcCmdMgr.addCommand(new StdCmdDuplicateSelection());
         rcCmdMgr.addCommand(new StdCmdSelectAll());
+        rcCmdMgr.addCommand(new StdCmdInvertSelection());
+        rcCmdMgr.addCommand(new StdCmdOptions());
         rcCmdMgr.addCommand(new StdCmdSelect());
         rcCmdMgr.addCommand(new StdCmdDelete());
         //rcCmdMgr.addCommand(new StdCmdRefresh());

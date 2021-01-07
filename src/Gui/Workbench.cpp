@@ -536,9 +536,9 @@ MenuItem* StdWorkbench::setupMenuBar() const
     *edit << "Std_Undo" << "Std_Redo" << "Separator" << "Std_Cut" << "Std_Copy"
         << "Std_Paste" /*<< "Std_DuplicateSelection"*/ << "Separator"
         /*<< "Std_Refresh"*/ << "Std_BoxSelection" /*<< "Std_BoxElementSelection"*/ << "Std_SelectAll" << "Std_Delete"
-        << "Separator" << "Sketcher_EditSketch"
+        << "Separator"  << "Sketcher_EditSketch" << "Sketcher_ExitSketch" << "Sketcher_ExitNoSaveSketch"
         /*<< "Std_Placement" << "Std_TransformManip"*/ /*<< "Std_Alignment"
-        << "Std_Edit" << "Separator" */
+        << "Std_Edit" << "Separator" */ << "Separator"
         << "Std_DlgPreferences"; /*<< "Sketcher_MergeSketches";*/
 
     MenuItem* axoviews = new MenuItem;
@@ -583,7 +583,8 @@ MenuItem* StdWorkbench::setupMenuBar() const
     *view << "Std_ViewRedraw" <<"Separator" << "Std_ViewFitAll" << "Std_ViewFitSelection" 
         /*"Std_ViewCreate"*/ /*<< "Std_OrthographicCamera"*/ /*<< "Std_PerspectiveCamera"*/ /* << "Std_MainFullscreen"*/
         /*<< "Separator"*/ << "Std_ViewZoomIn" << "Std_ViewZoomOut" << "Std_ViewBoxZoom" << "Separator"
-        //<< stdviews 
+        //<< stdviews  
+        << "Std_ViewPan" << "Std_ViewRotate"
         << "Std_ViewRotateLeft" << "Std_ViewRotateRight"
         /*<< "Std_FreezeViews"*/ /*<< "Std_DrawStyle"*/
         //<< "Std_SelBoundingBox"
@@ -600,7 +601,7 @@ MenuItem* StdWorkbench::setupMenuBar() const
 
         << "Std_ToolBarMenu" /*<< "Std_UserInterface"*/ 
 
-        << "Std_ToolBarMenu" /*<< "Std_UserInterface"*/  << "Std_UserInterfaceMenu" << "Sketcher_NewSketch"
+        << "Std_ToolBarMenu" /*<< "Std_UserInterface"*/  << "Std_UserInterfaceMenu" //<< "Sketcher_NewSketch"
 
         //<< "Std_DockViewMenu" 
         << "Std_MainFullscreen";
@@ -610,17 +611,20 @@ MenuItem* StdWorkbench::setupMenuBar() const
     // Sketch
     MenuItem* sketch = new MenuItem(menuBar);
     sketch->setCommand("&Sketch");
-    *sketch << "Sketcher_EditSketch" << "Sketcher_ValidateSketch" << "Separator"
-        << "Sketcher geometries" << "Sketcher tools" << "Sketcher B-spline tools";
+    *sketch << "Sketcher_EditSketch" << "Sketcher_ValidateSketch" << "Separator";
+        //<< "Sketcher geometries" << "Sketcher_tools" << "Sketcher B-spline tools";
 
     // Tools
     MenuItem* tool = new MenuItem(menuBar);
     tool->setCommand("&Tools");
-    *tool << "Std_DlgParameter" << "Std_Select" << "Std_BoxSelection" << "Std_SelectAll" << "Separator"
-        << "Std_ViewScreenShot" << "Std_SceneInspector"
-        << "Std_ExportGraphviz" << "Std_ProjectUtil" << "Separator"
+    *tool //<< "Std_DlgParameter" 
+        << "Std_Select" << "Std_BoxSelection" << "Std_SelectAll"  << "Std_InvertSelection" << "Separator"
+        << "Std_ViewScreenShot" //<< "Std_SceneInspector"
+        //<< "Std_ExportGraphviz" << "Std_ProjectUtil" 
+        << "Separator"
         << "Std_MeasureDistance" << "Separator"
-        << "Std_DemoMode" << "Std_UnitsCalculator" << "Separator" << "Std_DlgCustomize";
+        //<< "Std_DemoMode" << "Std_UnitsCalculator" 
+        << "Separator" << "Std_Options" << "Std_DlgCustomize";
 #ifdef BUILD_ADDONMGR
     * tool << "Std_AddonMgr";
 #endif
@@ -633,20 +637,20 @@ MenuItem* StdWorkbench::setupMenuBar() const
         << "Separator" << "Std_ViewSectionProperties" << "Separator"
         << "Std_ViewPlotResults" << "Std_ViewListResults" << "Std_ViewResultTools"; /*<< "Std_Quit"*/
 
-    //// Macro
+    // Macro
     //MenuItem* macro = new MenuItem(menuBar);
-    //macro->setCommand("&Macro");
+   // macro->setCommand("&Macro");
     //*macro << "Std_DlgMacroRecord" << "Std_MacroStopRecord" << "Std_DlgMacroExecute"
     //    << "Separator" << "Std_DlgMacroExecuteDirect" << "Std_MacroStartDebug"
     //    << "Std_MacroStopDebug" << "Std_MacroStepOver" << "Std_MacroStepInto"
-    //    << "Std_ToggleBreakpoint";
+     //   << "Std_ToggleBreakpoint";
 
-    //// Windows
-    //MenuItem* wnd = new MenuItem(menuBar);
-    //wnd->setCommand("&Windows");
-    //*wnd << "Std_ActivateNextWindow" << "Std_ActivatePrevWindow" << "Separator"
-    //    << "Std_TileWindows" << "Std_CascadeWindows"
-    //    << "Std_ArrangeIcons" << "Separator" << "Std_WindowsMenu" << "Std_Windows";
+     //Windows
+  // MenuItem* wnd = new MenuItem(menuBar);
+   // wnd->setCommand("&Windows");
+   // *wnd << "Std_ActivateNextWindow" << "Std_ActivatePrevWindow" << "Separator"
+   //     << "Std_TileWindows" << "Std_CascadeWindows"
+    //   << "Std_ArrangeIcons" << "Separator" << "Std_WindowsMenu" << "Std_Windows";
 
     // Separator
     MenuItem* sep = new MenuItem(menuBar);
