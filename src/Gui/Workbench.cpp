@@ -343,9 +343,9 @@ void Workbench::createMainWindowPopupMenu(MenuItem*) const
 void Workbench::createLinkMenu(MenuItem* item) {
     if (!item || !App::GetApplication().getActiveDocument())
         return;
-    MenuItem* linkMenu = new MenuItem;
-    linkMenu->setCommand("Link actions");
-    *linkMenu << "Std_LinkMakeGroup" << "Std_LinkMake";
+    //MenuItem* linkMenu = new MenuItem;
+    //linkMenu->setCommand("Link actions");
+    //*linkMenu << "Std_LinkMakeGroup" << "Std_LinkMake";
 
     auto& rMgr = Application::Instance->commandManager();
     const char* cmds[] = { "Std_LinkMakeRelative",0,"Std_LinkUnlink","Std_LinkReplace",
@@ -356,17 +356,17 @@ void Workbench::createLinkMenu(MenuItem* item) {
         if (!cmds[i]) {
             if (separator) {
                 separator = false;
-                *linkMenu << "Separator";
+                //*linkMenu << "Separator";
             }
             continue;
         }
         auto cmd = rMgr.getCommandByName(cmds[i]);
         if (cmd->isActive()) {
             separator = true;
-            *linkMenu << cmds[i];
+            //*linkMenu << cmds[i];
         }
     }
-    *item << linkMenu;
+    //*item << linkMenu;
 }
 
 void Workbench::activated()
@@ -478,19 +478,19 @@ void StdWorkbench::setupContextMenu(const char* recipient, MenuItem* item) const
         createLinkMenu(item);
         *item << "Separator";
 
-        MenuItem* StdViews = new MenuItem;
+        /*MenuItem* StdViews = new MenuItem;
         StdViews->setCommand("Standard views");
 
         *StdViews << "Std_ViewIsometric" << "Separator" << "Std_ViewFront" << "Std_ViewTop" << "Std_ViewRight"
             << "Std_ViewRear" << "Std_ViewBottom" << "Std_ViewLeft"
-            << "Separator" << "Std_ViewRotateLeft" << "Std_ViewRotateRight";
+            << "Separator" << "Std_ViewRotateLeft" << "Std_ViewRotateRight";*/
 
-        MenuItem* measure = new MenuItem();
-        measure->setCommand("Measure");
-        *measure << "View_Measure_Toggle_All" << "View_Measure_Clear_All";
+        //MenuItem* measure = new MenuItem();
+        //measure->setCommand("Measure");
+        //*measure << "View_Measure_Toggle_All" << "View_Measure_Clear_All";
 
-        *item << "Std_ViewFitAll" << "Std_ViewFitSelection" << "Std_DrawStyle" << StdViews << measure
-            << "Separator" << "Std_ViewDockUndockFullscreen";
+        //*item << "Std_ViewFitAll" << "Std_ViewFitSelection" << "Std_DrawStyle" << StdViews << measure
+        //    << "Separator" << "Std_ViewDockUndockFullscreen";
 
         if (Gui::Selection().countObjectsOfType(App::DocumentObject::getClassTypeId()) > 0) {
             *item << "Separator" << "Std_SetAppearance" << "Std_ToggleVisibility"
@@ -522,7 +522,7 @@ MenuItem* StdWorkbench::setupMenuBar() const
     // File
     MenuItem* file = new MenuItem(menuBar);
     file->setCommand("&File");
-    *file << "Std_New" << "Std_Open" << "Std_RecentFiles" << "Separator" << "Std_CloseActiveWindow"
+    *file << "Sketcher_NewSketch" << "Std_Open" << "Std_RecentFiles" << "Separator" << "Std_CloseActiveWindow"
         << "Std_CloseAllWindows" << "Separator" << "Std_Save" << "Std_SaveAs"
         /*<< "Std_SaveCopy"*/ << "Std_SaveAll" /*<< "Std_Revert"*/ << "Separator" /*<< "Std_Import"*/
         /*<< "Std_Export"*/ /*<< "Std_MergeProjects"*/ /*<< "Std_ProjectInfo"*/
@@ -597,7 +597,7 @@ MenuItem* StdWorkbench::setupMenuBar() const
        // << "Std_ToggleVisibility" << "Std_ToggleNavigation"
         //<< "Std_SetAppearance" << "Std_RandomColor" << "Separator" 
        // << "Std_Workbench" 
-        << "Std_ToolBarMenu" /*<< "Std_UserInterface"*/ << "Sketcher_NewSketch"
+        << "Std_ToolBarMenu" /*<< "Std_UserInterface"*/ 
         //<< "Std_DockViewMenu" 
         << "Std_MainFullscreen";
     // << "Std_TreeViewActions"
@@ -624,7 +624,7 @@ MenuItem* StdWorkbench::setupMenuBar() const
     // Simulation
     MenuItem* Simulation = new MenuItem(menuBar);
     Simulation->setCommand("&Simulation");
-    *Simulation << "Separator" << "Std_ViewDefineMaterials" << "Std_ViewDefineSection"
+    *Simulation << "Std_ViewDefineMaterials" << "Std_ViewDefineSection"
         << "Std_ViewDefineBoundaryConditions" << "Std_ViewDefineLoads" << "Separator" << "Std_ViewRunAnalysis"
         << "Separator" << "Std_ViewSectionProperties" << "Separator"
         << "Std_ViewPlotResults" << "Std_ViewListResults" << "Std_ViewResultTools"; /*<< "Std_Quit"*/

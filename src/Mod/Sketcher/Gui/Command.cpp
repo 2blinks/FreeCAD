@@ -141,7 +141,7 @@ CmdSketcherNewSketch::CmdSketcherNewSketch()
 {
     sAppModule = "Sketcher";
     sGroup = QT_TR_NOOP("Sketcher");
-    sMenuText = QT_TR_NOOP("Create sketch");
+    sMenuText = QT_TR_NOOP("New");
     sToolTipText = QT_TR_NOOP("Create a new sketch");
     sWhatsThis = "Sketcher_NewSketch";
     sStatusTip = sToolTipText;
@@ -160,6 +160,7 @@ void CmdSketcherNewSketch::activated(int iMsg)
     ParameterGrp::handle hViewGrp = App::GetApplication().GetParameterGroupByPath("User parameter:BaseApp/Preferences/View");
     if (hViewGrp->GetBool("ShowAxisCross"))
         doCommand(Command::Gui, "Gui.ActiveDocument.ActiveView.setAxisCross(True)");
+    
     Attacher::eMapMode mapmode = Attacher::mmDeactivated;
     bool bAttach = false;
     if (Gui::Selection().hasSelection()) {

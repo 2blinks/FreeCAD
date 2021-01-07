@@ -3649,9 +3649,9 @@ namespace Gui {
         rcCmdMgr.addCommand(new StdCmdViewIsometric());
         rcCmdMgr.addCommand(new StdCmdViewDimetric());
         rcCmdMgr.addCommand(new StdCmdViewTrimetric());
-        rcCmdMgr.addCommand(new StdCmdViewFitAll());
+        //rcCmdMgr.addCommand(new StdCmdViewFitAll());
         rcCmdMgr.addCommand(new StdCmdViewVR());
-        rcCmdMgr.addCommand(new StdCmdViewFitSelection());
+        //rcCmdMgr.addCommand(new StdCmdViewFitSelection());
         rcCmdMgr.addCommand(new StdCmdViewRotateLeft());
         rcCmdMgr.addCommand(new StdCmdViewRotateRight());
         rcCmdMgr.addCommand(new StdCmdViewRedraw());

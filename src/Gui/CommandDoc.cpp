@@ -464,7 +464,7 @@ void StdCmdNew::activated(int iMsg)
 
     ParameterGrp::handle hViewGrp = App::GetApplication().GetParameterGroupByPath("User parameter:BaseApp/Preferences/View");
     if (hViewGrp->GetBool("ShowAxisCross"))
-        doCommand(Command::Gui, "Gui.ActiveDocument.ActiveView.setAxisCross(True)");
+        doCommand(Command::Gui, "Gui.ActiveDocument.ActiveView.setAxisCross(True)");   
 }
 
 

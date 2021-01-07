@@ -771,8 +771,8 @@ void NaviCubeImplementation::initNaviCube(QtGLWidget* gl) {
 }
 
 void NaviCubeImplementation::drawNaviCube() {
-	glViewport(m_CubeWidgetPosX-m_CubeWidgetSize/2, m_CubeWidgetPosY-m_CubeWidgetSize/2, m_CubeWidgetSize, m_CubeWidgetSize);
-	drawNaviCube(false);
+	//glViewport(m_CubeWidgetPosX-m_CubeWidgetSize/2, m_CubeWidgetPosY-m_CubeWidgetSize/2, m_CubeWidgetSize, m_CubeWidgetSize);
+	//drawNaviCube(false);
 }
 
 void NaviCubeImplementation::createContextMenu(const std::vector<std::string>& cmd) {
