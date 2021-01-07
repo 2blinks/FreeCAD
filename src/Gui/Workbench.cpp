@@ -585,7 +585,7 @@ MenuItem* StdWorkbench::setupMenuBar() const
         /*<< "Separator"*/ << "Std_ViewZoomIn" << "Std_ViewZoomOut" << "Std_ViewBoxZoom" << "Separator"
         //<< stdviews  
         << "Std_ViewPan" << "Std_ViewRotate"
-        << "Std_ViewRotateLeft" << "Std_ViewRotateRight"
+        << "Std_ViewRotateLeft" << "Std_ViewRotateRight" << "Separator" << "Std_ViewHideShow"
         /*<< "Std_FreezeViews"*/ /*<< "Std_DrawStyle"*/
         //<< "Std_SelBoundingBox"
         << "Separator" //<< view3d << zoom
@@ -611,8 +611,8 @@ MenuItem* StdWorkbench::setupMenuBar() const
     // Sketch
     MenuItem* sketch = new MenuItem(menuBar);
     sketch->setCommand("&Sketch");
-    *sketch << "Sketcher_EditSketch" << "Sketcher_ValidateSketch" << "Separator";
-        //<< "Sketcher geometries" << "Sketcher_tools" << "Sketcher B-spline tools";
+    *sketch << "Sketcher_EditSketch" << "Sketcher_ValidateSketch" << "Separator"
+        << "Sketcher geometries" << "Sketcher tools" << "Sketcher B-spline tools";
 
     // Tools
     MenuItem* tool = new MenuItem(menuBar);

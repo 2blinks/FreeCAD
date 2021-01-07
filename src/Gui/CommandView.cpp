@@ -1585,7 +1585,27 @@ void StdCmdViewRotateRight::activated(int iMsg)
     Q_UNUSED(iMsg);
     doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRotateRight()");
 }
+//Hide/Show
+DEF_3DV_CMD(StdCmdViewHideShow)
 
+StdCmdViewHideShow::StdCmdViewHideShow()
+    : Command("Std_ViewHideShow")
+{
+    sGroup = QT_TR_NOOP("Standard-View");
+    sMenuText = QT_TR_NOOP("Hide/Show");
+    sToolTipText = QT_TR_NOOP("");
+    sWhatsThis = "Std_ViewHide/Show";
+    sStatusTip = QT_TR_NOOP("");
+    //sPixmap = "view-rotate-right";
+    //sAccel = "Shift+Right";
+   // eType = Alter3DView;
+}
+
+void StdCmdViewHideShow::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    //doCommand(Command::Gui, "Gui.activeDocument().activeView().viewRotateRight()");
+}
 
 //===========================================================================
 // Std_ViewFitAll
@@ -3711,6 +3731,7 @@ namespace Gui {
         CommandManager& rcCmdMgr = Application::Instance->commandManager();
 
         // views
+        rcCmdMgr.addCommand(new StdCmdViewHideShow());
         rcCmdMgr.addCommand(new StdCmdViewPan());
         rcCmdMgr.addCommand(new StdCmdViewFitSelection());
         rcCmdMgr.addCommand(new StdCmdViewFitAll());
